@@ -1,0 +1,53 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.optum.JSFSample'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+sourceSets{
+	main{
+		java.outputDir =file('src/main/webapp/WEB-INF/classes')
+	}
+}
+
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.flywaydb:flyway-core'
+
+	implementation 'org.apache.myfaces.core:myfaces-api:2.2.12'
+	implementation 'org.apache.myfaces.core:myfaces-impl:2.2.12'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'org.ocpsoft.rewrite:rewrite-servlet:3.4.4.Final'
+	implementation 'org.ocpsoft.rewrite:rewrite-integration-faces:3.4.4.Final'
+	implementation 'org.ocpsoft.rewrite:rewrite-config-prettyfaces:3.4.4.Final'
+	implementation 'org.primefaces:primefaces:8.0'
+
+
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.hsqldb:hsqldb'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
